@@ -3,29 +3,32 @@ package christmas.domain;
 import christmas.constant.Calender;
 import christmas.constant.ExceptionMessage;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+
 public class Today {
 
-    public static final int START_DATE = 1;
-    public static final int LAST_DATE = 31;
-    private final int today;
+    private final LocalDate localDate;
 
     public Today(int today) {
         validateTodayRange(today);
-        this.today = today;
+        localDate = LocalDate.of(2023, 12, today);
     }
 
     private void validateTodayRange(int today) {
-        if (today < START_DATE || LAST_DATE < today) {
+        try {
+            LocalDate.of(2023, 12, today);
+        } catch (DateTimeException e) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_TODAY_MESSAGE);
         }
     }
 
     public boolean is(Calender calender) {
-        return calender.verify(today);
+        return calender.verify(localDate.getDayOfMonth());
     }
 
     public int getToday() {
-        return today;
+        return localDate.getDayOfMonth();
     }
 
 }
