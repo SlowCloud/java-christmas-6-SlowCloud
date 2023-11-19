@@ -5,33 +5,34 @@ import java.util.function.Function;
 
 public enum Badge {
 
-    NOTHING("없음", discounted -> discounted > Constants.STAR_AVAILABLE),
-    STAR("별", discounted -> discounted > Constants.TREE_AVAILABLE),
-    TREE("트리", discounted -> discounted > Constants.SANTA_AVAILABLE),
-    SANTA("산타", discounted -> discounted <= Constants.SANTA_AVAILABLE);
+
+    NOTHING("없음", 0),
+    STAR("별", 5000),
+    TREE("트리", 10000),
+    SANTA("산타", 20000);
 
     private final String badgeName;
-    private final Function<Integer, Boolean> validator;
+    private final int availablePrice;
 
-    Badge(String badgeName, Function<Integer, Boolean> validator) {
+    Badge(String badgeName, int availablePrice) {
         this.badgeName = badgeName;
-        this.validator = validator;
+        this.availablePrice = availablePrice;
     }
 
     public static Badge findBadge(int discounted) {
         return Arrays.stream(values())
-                .filter(badge -> badge.validator.apply(discounted))
+                .sorted((l, r) -> r.availablePrice - l.availablePrice)
+                .filter(badge -> isAvailableBadge(badge, discounted))
                 .findFirst()
                 .orElseThrow();
+    }
+
+    private static boolean isAvailableBadge(Badge badge, int discounted) {
+        return -badge.availablePrice >= discounted;
     }
 
     public String getBadgeName() {
         return badgeName;
     }
 
-    private static class Constants {
-        public static final int STAR_AVAILABLE = -5000;
-        public static final int TREE_AVAILABLE = -10000;
-        public static final int SANTA_AVAILABLE = -20000;
-    }
 }
