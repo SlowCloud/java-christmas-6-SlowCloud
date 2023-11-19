@@ -36,10 +36,6 @@ public class Today {
         return dayOfWeek.equals(DayOfWeek.SUNDAY) || isChristmas();
     }
 
-    public boolean isWeekday() {
-        return !isWeekend();
-    }
-
     public boolean isWeekend() {
         DayOfWeek dayOfWeek = localDate.getDayOfWeek();
         return dayOfWeek.equals(DayOfWeek.FRIDAY) || dayOfWeek.equals(DayOfWeek.SATURDAY);

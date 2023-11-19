@@ -19,7 +19,7 @@ public class WeekdayEvent implements DiscountEvent {
     }
 
     private void validateToday(Today today) {
-        if (!today.isWeekday()) {
+        if (today.isWeekend()) {
             throw new IllegalArgumentException();
         }
     }
