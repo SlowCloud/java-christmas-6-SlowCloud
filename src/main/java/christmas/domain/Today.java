@@ -1,9 +1,9 @@
 package christmas.domain;
 
-import christmas.constant.Calender;
 import christmas.constant.ExceptionMessage;
 
 import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class Today {
@@ -23,12 +23,26 @@ public class Today {
         }
     }
 
-    public boolean is(Calender calender) {
-        return calender.verify(localDate.getDayOfMonth());
-    }
-
     public int getToday() {
         return localDate.getDayOfMonth();
+    }
+
+    public boolean isChristmas() {
+        return localDate.getDayOfMonth() == 25;
+    }
+
+    public boolean isSpecial() {
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+        return dayOfWeek.equals(DayOfWeek.SUNDAY) || isChristmas();
+    }
+
+    public boolean isWeekday() {
+        return !isWeekend();
+    }
+
+    public boolean isWeekend() {
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+        return dayOfWeek.equals(DayOfWeek.FRIDAY) || dayOfWeek.equals(DayOfWeek.SATURDAY);
     }
 
 }

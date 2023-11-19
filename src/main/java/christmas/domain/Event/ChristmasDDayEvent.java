@@ -1,6 +1,5 @@
 package christmas.domain.Event;
 
-import christmas.constant.Calender;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Order.Orders;
 import christmas.domain.Today;
@@ -19,7 +18,7 @@ public class ChristmasDDayEvent implements DiscountEvent {
     }
 
     private void validateToday(Today today) {
-        if (!today.is(Calender.BEFORE_CHRISTMAS)) {
+        if (!today.isChristmas()) {
             throw new IllegalArgumentException();
         }
     }

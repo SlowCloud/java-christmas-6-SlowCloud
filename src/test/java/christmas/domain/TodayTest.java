@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import christmas.constant.Calender;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -9,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TodayTest {
 
@@ -23,18 +21,6 @@ class TodayTest {
         void givenNumberIsOutOfRange(int number) {
             Assertions.assertThatThrownBy(() -> new Today(number))
                     .isInstanceOf(IllegalArgumentException.class);
-        }
-
-    }
-
-    @DisplayName("is 테스트")
-    @Nested
-    class is {
-
-        @DisplayName("캘린더에 대해 잘 검사하는지 확인한다.")
-        @Test
-        void checkIs() {
-            assertTrue(new Today(25).is(Calender.CHRISTMAS));
         }
 
     }

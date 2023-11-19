@@ -1,6 +1,5 @@
 package christmas.domain.Event;
 
-import christmas.constant.Calender;
 import christmas.constant.Course;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Order.Orders;
@@ -20,7 +19,7 @@ public class WeekdayEvent implements DiscountEvent {
     }
 
     private void validateToday(Today today) {
-        if (!today.is(Calender.WEEKDAY)) {
+        if (!today.isWeekday()) {
             throw new IllegalArgumentException();
         }
     }

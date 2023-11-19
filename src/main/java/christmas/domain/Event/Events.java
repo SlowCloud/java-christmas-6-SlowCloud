@@ -1,6 +1,5 @@
 package christmas.domain.Event;
 
-import christmas.domain.Discount.Discount;
 import christmas.domain.Discount.Discounts;
 import christmas.domain.Giveaway.Giveaways;
 
