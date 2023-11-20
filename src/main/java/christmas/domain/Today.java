@@ -31,6 +31,10 @@ public class Today {
         return localDate.getDayOfMonth() == 25;
     }
 
+    public boolean isBeforeChristmas() {
+        return localDate.getDayOfMonth() <= 25;
+    }
+
     public boolean isSpecial() {
         DayOfWeek dayOfWeek = localDate.getDayOfWeek();
         return dayOfWeek.equals(DayOfWeek.SUNDAY) || isChristmas();

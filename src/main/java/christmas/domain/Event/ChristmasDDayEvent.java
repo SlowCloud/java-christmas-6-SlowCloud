@@ -18,7 +18,7 @@ public class ChristmasDDayEvent implements DiscountEvent {
     }
 
     private void validateToday(Today today) {
-        if (!today.isChristmas()) {
+        if (!today.isBeforeChristmas()) {
             throw new IllegalArgumentException();
         }
     }
