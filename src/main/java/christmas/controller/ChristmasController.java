@@ -6,9 +6,9 @@ import christmas.domain.Event.Events;
 import christmas.domain.Event.EventsBuilder;
 import christmas.domain.Giveaway.Giveaways;
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
-import christmas.service.OrderService;
-import christmas.service.TodayService;
+import christmas.domain.Today.Today;
+import christmas.domain.Order.OrderService;
+import christmas.domain.Today.TodayService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 

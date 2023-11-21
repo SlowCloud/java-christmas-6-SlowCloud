@@ -2,7 +2,7 @@ package christmas.domain.Event;
 
 import christmas.domain.Discount.Discount;
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
 class SpecialEvent implements DiscountEvent {
 

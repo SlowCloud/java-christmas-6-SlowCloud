@@ -1,7 +1,7 @@
 package christmas.domain.Event;
 
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
 import java.util.ArrayList;
 import java.util.List;

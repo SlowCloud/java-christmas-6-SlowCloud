@@ -1,5 +1,6 @@
-package christmas.domain;
+package christmas.domain.Today;
 
+import christmas.domain.Today.Today;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

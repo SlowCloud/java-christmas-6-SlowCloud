@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.domain.Order;
 
 import christmas.constant.ExceptionMessage;
 import christmas.domain.Order.Order;

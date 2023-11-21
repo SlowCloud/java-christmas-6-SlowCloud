@@ -1,7 +1,7 @@
-package christmas.service;
+package christmas.domain.Today;
 
 import christmas.constant.ExceptionMessage;
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
 public class TodayService {
 

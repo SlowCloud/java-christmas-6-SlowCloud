@@ -1,6 +1,6 @@
 package christmas.fixture;
 
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
 public enum TodayFixture {
 
