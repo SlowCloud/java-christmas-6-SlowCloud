@@ -1,9 +1,8 @@
 package christmas.domain.Today;
 
 import christmas.constant.ExceptionMessage;
-import christmas.domain.Today.Today;
 
-public class TodayService {
+class TodayService {
 
     public Today createToday(String today) {
         validateNumber(today);

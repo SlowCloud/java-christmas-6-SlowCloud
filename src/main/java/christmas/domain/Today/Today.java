@@ -23,6 +23,10 @@ public class Today {
         }
     }
 
+    public static Today of(String string) {
+        return new TodayService().createToday(string);
+    }
+
     public int getToday() {
         return localDate.getDayOfMonth();
     }

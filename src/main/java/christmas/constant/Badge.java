@@ -1,7 +1,6 @@
 package christmas.constant;
 
 import java.util.Arrays;
-import java.util.function.Function;
 
 public enum Badge {
 
