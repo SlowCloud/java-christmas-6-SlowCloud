@@ -4,7 +4,7 @@ import christmas.domain.Discount.Discount;
 import christmas.domain.Order.Orders;
 import christmas.domain.Today;
 
-public class ChristmasDDayEvent implements DiscountEvent {
+class ChristmasDDayEvent implements DiscountEvent {
 
     private static final String EVENT_NAME = "크리스마스 디데이 할인";
     private static final int D_DAY_DISCOUNT_BASE = 1000;

@@ -4,7 +4,7 @@ import christmas.constant.Menu;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Giveaway.Giveaway;
 
-public class ChampagneGiveawayEvent implements GiveawayEvent, DiscountEvent {
+class ChampagneGiveawayEvent implements GiveawayEvent, DiscountEvent {
 
     public static final int GIVEAWAY_AVAILABLE_PRICE = 120_000;
     private final Menu champagne = Menu.CHAMPAGNE;
