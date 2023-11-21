@@ -9,10 +9,10 @@ import java.util.List;
 
 public class OrderService {
 
-    public static final String ORDERS_STRING_DELIMITER = ",";
-    public static final String DASH_STRING = "-";
-    public static final char DASH_CHAR = '-';
-    public static final int DASH_COUNT = 1;
+    private static final String ORDERS_STRING_DELIMITER = ",";
+    private static final String DASH_STRING = "-";
+    private static final char DASH_CHAR = '-';
+    private static final int DASH_COUNT = 1;
 
     public Orders createOrders(String ordersString) {
         List<Order> orders = Arrays.stream(ordersString.split(ORDERS_STRING_DELIMITER))
