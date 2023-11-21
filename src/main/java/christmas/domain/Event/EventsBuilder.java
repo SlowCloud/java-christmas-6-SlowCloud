@@ -35,7 +35,7 @@ public class EventsBuilder {
         events.add(WeekdayEvent.createInstance(today, orders));
         events.add(WeekendEvent.createInstance(today, orders));
         events.add(SpecialEvent.createInstance(today, orders));
-        events.add(ChampagneGiveawayEvent.createInstance(orders.getTotalPrice()));
+        events.add(ChampagneGiveawayEvent.createInstance(orders));
         return events.stream()
                 .filter(Objects::nonNull)
                 .toList();
