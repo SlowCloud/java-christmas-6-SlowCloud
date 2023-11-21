@@ -5,7 +5,6 @@ import christmas.domain.Discount.Discounts;
 import christmas.domain.Event.Events;
 import christmas.domain.Event.EventsBuilder;
 import christmas.domain.Giveaway.Giveaways;
-import christmas.domain.Order.OrderService;
 import christmas.domain.Order.Orders;
 import christmas.domain.Today.Today;
 import christmas.view.InputView;
@@ -18,17 +17,11 @@ public class ChristmasController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final OrderService orderService;
 
 
-    public ChristmasController(
-            InputView inputView,
-            OutputView outputView,
-            OrderService orderService
-    ) {
+    public ChristmasController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.orderService = orderService;
     }
 
     public void play() {
@@ -49,7 +42,7 @@ public class ChristmasController {
     }
 
     private Orders getOrders() {
-        return tryCatchLoop(() -> orderService.createOrders(inputView.getOrders()));
+        return tryCatchLoop(() -> Orders.of(inputView.getOrders()));
     }
 
     private <T> T tryCatchLoop(Supplier<T> supplier) {

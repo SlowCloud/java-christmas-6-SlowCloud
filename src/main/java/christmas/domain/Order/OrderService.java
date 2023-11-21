@@ -5,7 +5,7 @@ import christmas.constant.ExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrderService {
+class OrderService {
 
     private static final String ORDERS_STRING_DELIMITER = ",";
     private static final String DASH_STRING = "-";

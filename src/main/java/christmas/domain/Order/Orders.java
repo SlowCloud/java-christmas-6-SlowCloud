@@ -45,6 +45,10 @@ public class Orders {
         }
     }
 
+    public static Orders of(String string) {
+        return new OrderService().createOrders(string);
+    }
+
     public String getOrderedMenusMessage() {
         return String.join("\n", orders.stream()
                 .map(Order::getMessage)
