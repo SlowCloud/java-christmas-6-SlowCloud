@@ -7,6 +7,7 @@ import christmas.domain.Event.EventsBuilder;
 import christmas.domain.Giveaway.Giveaways;
 import christmas.domain.Order.Orders;
 import christmas.domain.Today.Today;
+import christmas.util.Looper;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -46,17 +47,7 @@ public class ChristmasController {
     }
 
     private <T> T tryCatchLoop(Supplier<T> supplier) {
-        return tryCatchLoop(supplier, outputView::printIllegalArgumentException);
-    }
-
-    private <T> T tryCatchLoop(Supplier<T> supplier, Consumer<IllegalArgumentException> exceptionConsumer) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                exceptionConsumer.accept(e);
-            }
-        }
+        return Looper.tryCatchLoop(supplier, outputView::printIllegalArgumentException);
     }
 
     private Events getEvents(Today today, Orders orders) {
