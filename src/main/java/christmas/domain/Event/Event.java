@@ -1,6 +1,6 @@
 package christmas.domain.Event;
 
-interface Event {
+public interface Event {
 
     int EVENT_AVAILABLE_PRICE = 10_000;
 
