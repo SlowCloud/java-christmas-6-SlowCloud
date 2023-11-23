@@ -11,7 +11,7 @@ class WeekdayEvent implements DiscountEvent {
 
     private final int mainDishCount;
 
-    public WeekdayEvent(Today today, Orders orders) {
+    private WeekdayEvent(Today today, Orders orders) {
         Event.validatePrice(orders.getTotalPrice());
         validateToday(today);
         validateMain(orders);

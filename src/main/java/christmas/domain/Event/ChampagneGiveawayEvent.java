@@ -11,7 +11,7 @@ class ChampagneGiveawayEvent implements GiveawayEvent, DiscountEvent {
     private final Menu champagne = Menu.CHAMPAGNE;
     private final int count = 1;
 
-    public ChampagneGiveawayEvent(Orders orders) {
+    private ChampagneGiveawayEvent(Orders orders) {
         int price = orders.getTotalPrice();
         Event.validatePrice(price);
         validateAvailablePrice(price);

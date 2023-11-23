@@ -56,7 +56,7 @@ class WeekendEventTest {
         @Test
         void checkGetDiscount() {
 
-            DiscountEvent discountEvent = new WeekendEvent(
+            DiscountEvent discountEvent = (DiscountEvent) WeekendEvent.createInstance(
                     TodayFixture.WEEKEND.getToday(),
                     OrdersFixture.DESSERT.getOrders()
             );

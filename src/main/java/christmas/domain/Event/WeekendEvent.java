@@ -11,7 +11,7 @@ class WeekendEvent implements DiscountEvent {
 
     private final int dessertCount;
 
-    public WeekendEvent(Today today, Orders orders) {
+    private WeekendEvent(Today today, Orders orders) {
         Event.validatePrice(orders.getTotalPrice());
         validateToday(today);
         validateDessert(orders);

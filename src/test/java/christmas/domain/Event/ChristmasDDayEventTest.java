@@ -46,7 +46,7 @@ class ChristmasDDayEventTest {
         @CsvSource(value = {"1,1000", "2,1100"})
         void checkGetDiscount(int day, int expectedDiscount) {
 
-            DiscountEvent discountEvent = new ChristmasDDayEvent(
+            DiscountEvent discountEvent = (DiscountEvent) ChristmasDDayEvent.createInstance(
                     new Today(day),
                     OrdersFixture.MAIN.getOrders()
             );

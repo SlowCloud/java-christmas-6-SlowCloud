@@ -11,7 +11,7 @@ class ChristmasDDayEvent implements DiscountEvent {
     private static final int DISCOUNT_PER_DAY = 100;
     private final int today;
 
-    public ChristmasDDayEvent(Today today, Orders orders) {
+    private ChristmasDDayEvent(Today today, Orders orders) {
         Event.validatePrice(orders.getTotalPrice());
         validateToday(today);
         this.today = today.getToday();

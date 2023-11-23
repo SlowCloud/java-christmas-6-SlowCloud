@@ -59,7 +59,7 @@ class SpecialEventTest {
         @Test
         void checkGetDiscount() {
 
-            DiscountEvent discountEvent = new SpecialEvent(
+            DiscountEvent discountEvent = (DiscountEvent) SpecialEvent.createInstance(
                     TodayFixture.CHRISTMAS.getToday(),
                     OrdersFixture.MAIN.getOrders()
             );

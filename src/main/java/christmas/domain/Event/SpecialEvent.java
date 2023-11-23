@@ -8,7 +8,7 @@ class SpecialEvent implements DiscountEvent {
 
     private static final String EVENT_NAME = "특별 할인";
 
-    public SpecialEvent(Today today, Orders orders) {
+    private SpecialEvent(Today today, Orders orders) {
         Event.validatePrice(orders.getTotalPrice());
         validateToday(today);
     }
