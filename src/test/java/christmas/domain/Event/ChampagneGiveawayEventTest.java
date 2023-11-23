@@ -8,13 +8,17 @@ import christmas.fixture.OrdersFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
+import static org.mockito.Mockito.*;
 
 class ChampagneGiveawayEventTest {
+
 
     @DisplayName("createInstance 테스트")
     @Nested
@@ -23,9 +27,17 @@ class ChampagneGiveawayEventTest {
         @DisplayName("총 구매액이 12만을 넘지 않으면 null을 반환한다.")
         @Test
         void givenPriceIsLowerThanHundredTwentyThousand() {
-            assertNull(ChampagneGiveawayEvent.createInstance(
-                    OrdersFixture.APPETIZER.getOrders()
-            ));
+            Orders cheapOrders = mock(Orders.class);
+            given(cheapOrders.getTotalPrice()).willReturn(10);
+            assertNull(ChampagneGiveawayEvent.createInstance(cheapOrders));
+        }
+
+        @DisplayName("총 구매액이 12만을 넘으면 않으면 null을 반환한다.")
+        @Test
+        void givenPriceIsEnough() {
+            Orders expensiveOrders = mock(Orders.class);
+            given(expensiveOrders.getTotalPrice()).willReturn(120_000);
+            assertNotNull(ChampagneGiveawayEvent.createInstance(expensiveOrders));
         }
 
     }
@@ -37,15 +49,9 @@ class ChampagneGiveawayEventTest {
         @DisplayName("정상적으로 Discount를 반환하는지 확인한다.")
         @Test
         void checkGetDiscount() {
-            DiscountEvent discountEvent = (DiscountEvent) ChampagneGiveawayEvent.createInstance(
-                    new Orders(
-                            List.of(
-                                    OrderFixture.MAIN.getOrder(),
-                                    OrderFixture.MAIN.getOrder(),
-                                    OrderFixture.MAIN.getOrder()
-                            )
-                    )
-            );
+            Orders expensiveOrders = mock(Orders.class);
+            given(expensiveOrders.getTotalPrice()).willReturn(120_000);
+            DiscountEvent discountEvent = (DiscountEvent) ChampagneGiveawayEvent.createInstance(expensiveOrders);
             Discount discount = discountEvent.getDiscount();
             Discount expected = new Discount("증정 이벤트", 25_000);
             assertEquals(discount, expected);
@@ -60,9 +66,9 @@ class ChampagneGiveawayEventTest {
         @DisplayName("정상적으로 Giveaway를 반환하는지 확인한다.")
         @Test
         void checkGetGiveaway() {
-            GiveawayEvent giveawayEvent = (GiveawayEvent) ChampagneGiveawayEvent.createInstance(
-                    OrdersFixture.MAIN.getOrders()
-            );
+            Orders expensiveOrders = mock(Orders.class);
+            given(expensiveOrders.getTotalPrice()).willReturn(120_000);
+            GiveawayEvent giveawayEvent = (GiveawayEvent) ChampagneGiveawayEvent.createInstance(expensiveOrders);
             Giveaway giveaway = giveawayEvent.getGiveaway();
             Giveaway expected = new Giveaway("샴페인", 1);
             assertEquals(giveaway, expected);
