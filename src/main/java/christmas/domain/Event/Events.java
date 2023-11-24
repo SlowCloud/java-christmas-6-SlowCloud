@@ -5,6 +5,7 @@ import christmas.domain.Giveaway.Giveaways;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class Events {
 
@@ -15,35 +16,31 @@ public class Events {
     }
 
     public Discounts getTotalDiscounts() {
-        return new Discounts(getFilteredEvents(DiscountEvent.class)
-                .stream()
+        return new Discounts(getEventStream(DiscountEvent.class)
                 .map(DiscountEvent::getDiscount)
                 .toList());
     }
 
     public Giveaways getGiveaways() {
-        return new Giveaways(getFilteredEvents(GiveawayEvent.class)
-                .stream()
+        return new Giveaways(getEventStream(GiveawayEvent.class)
                 .map(GiveawayEvent::getGiveaway)
                 .toList());
     }
 
     public Discounts getDiscountsExceptGiveaways() {
-        return new Discounts(getFilteredEvents(DiscountEvent.class, event -> !(event instanceof GiveawayEvent))
-                .stream()
+        return new Discounts(getEventStream(DiscountEvent.class, event -> !(event instanceof GiveawayEvent))
                 .map(DiscountEvent::getDiscount)
                 .toList());
     }
 
-    private <T extends Event> List<T> getFilteredEvents(Class<T> eventType) {
-        return getFilteredEvents(eventType, eventType::isInstance);
+    private <T extends Event> Stream<T> getEventStream(Class<T> eventType) {
+        return getEventStream(eventType, eventType::isInstance);
     }
 
-    private <T extends Event> List<T> getFilteredEvents(Class<T> eventType, Function<Event, Boolean> filter) {
+    private <T extends Event> Stream<T> getEventStream(Class<T> eventType, Function<Event, Boolean> filter) {
         return events.stream()
                 .filter(filter::apply)
-                .map(eventType::cast)
-                .toList();
+                .map(eventType::cast);
     }
 
 }
