@@ -23,7 +23,8 @@ class OrdersTest {
             Assertions.assertThatThrownBy(
                     () -> new Orders(List.of(
                             OrderFixture.APPETIZER.getOrder(),
-                            OrderFixture.APPETIZER.getOrder()))
+                            OrderFixture.APPETIZER.getOrder())
+                    )
             ).isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -31,8 +32,7 @@ class OrdersTest {
         @Test
         void givenOrdersAreOnlyDrink() {
             Assertions.assertThatThrownBy(
-                    () -> new Orders(List.of(
-                            OrderFixture.DRINK.getOrder()))
+                    () -> new Orders(List.of(OrderFixture.DRINK.getOrder()))
             ).isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -40,8 +40,7 @@ class OrdersTest {
         @Test
         void givenOrdersAreOver20() {
             Assertions.assertThatThrownBy(
-                    () -> new Orders(List.of(
-                            OrderFixture.COUNT_OVER_20.getOrder()))
+                    () -> new Orders(List.of(OrderFixture.COUNT_OVER_20.getOrder()))
             ).isInstanceOf(IllegalArgumentException.class);
         }
 
