@@ -11,7 +11,6 @@ import christmas.util.Looper;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ChristmasController {

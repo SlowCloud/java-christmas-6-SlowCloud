@@ -1,7 +1,6 @@
 package christmas.domain.Today;
 
 import christmas.constant.ExceptionMessage;
-import christmas.domain.Today.TodayService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

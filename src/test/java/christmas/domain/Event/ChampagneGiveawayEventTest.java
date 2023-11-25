@@ -3,19 +3,13 @@ package christmas.domain.Event;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Giveaway.Giveaway;
 import christmas.domain.Order.Orders;
-import christmas.fixture.OrderFixture;
-import christmas.fixture.OrdersFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
-import org.mockito.Mockito;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.mock;
 
 class ChampagneGiveawayEventTest {
 
