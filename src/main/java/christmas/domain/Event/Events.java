@@ -16,31 +16,21 @@ public class Events {
     }
 
     public Discounts getTotalDiscounts() {
-        return new Discounts(getEventStream(DiscountEvent.class)
+        return new Discounts(EventFilter.getDiscountEvents(events).stream()
                 .map(DiscountEvent::getDiscount)
                 .toList());
     }
 
     public Giveaways getGiveaways() {
-        return new Giveaways(getEventStream(GiveawayEvent.class)
+        return new Giveaways(EventFilter.getGiveawayEvents(events).stream()
                 .map(GiveawayEvent::getGiveaway)
                 .toList());
     }
 
     public Discounts getDiscountsExceptGiveaways() {
-        return new Discounts(getEventStream(DiscountEvent.class, event -> !(event instanceof GiveawayEvent))
+        return new Discounts(EventFilter.getDiscountEventsNotGiveawayEvent(events).stream()
                 .map(DiscountEvent::getDiscount)
                 .toList());
-    }
-
-    private <T extends Event> Stream<T> getEventStream(Class<T> eventType) {
-        return getEventStream(eventType, eventType::isInstance);
-    }
-
-    private <T extends Event> Stream<T> getEventStream(Class<T> eventType, Function<Event, Boolean> filter) {
-        return events.stream()
-                .filter(filter::apply)
-                .map(eventType::cast);
     }
 
 }
