@@ -1,8 +1,6 @@
 package christmas.domain.Event;
 
 import christmas.domain.Discount.Discount;
-import christmas.domain.Order.Orders;
-import christmas.fixture.OrderFixture;
 import christmas.fixture.OrdersFixture;
 import christmas.fixture.TodayFixture;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -59,7 +56,7 @@ class SpecialEventTest {
         @Test
         void checkGetDiscount() {
 
-            DiscountEvent discountEvent = new SpecialEvent(
+            DiscountEvent discountEvent = (DiscountEvent) SpecialEvent.createInstance(
                     TodayFixture.CHRISTMAS.getToday(),
                     OrdersFixture.MAIN.getOrders()
             );

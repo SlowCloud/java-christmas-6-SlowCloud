@@ -3,14 +3,16 @@ package christmas.domain.Event;
 import christmas.constant.Menu;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Giveaway.Giveaway;
+import christmas.domain.Order.Orders;
 
-public class ChampagneGiveawayEvent implements GiveawayEvent, DiscountEvent {
+class ChampagneGiveawayEvent implements GiveawayEvent, DiscountEvent {
 
     public static final int GIVEAWAY_AVAILABLE_PRICE = 120_000;
     private final Menu champagne = Menu.CHAMPAGNE;
     private final int count = 1;
 
-    public ChampagneGiveawayEvent(int price) {
+    private ChampagneGiveawayEvent(Orders orders) {
+        int price = orders.getTotalPrice();
         Event.validatePrice(price);
         validateAvailablePrice(price);
     }
@@ -21,9 +23,9 @@ public class ChampagneGiveawayEvent implements GiveawayEvent, DiscountEvent {
         }
     }
 
-    public static Event createInstance(int price) {
+    public static Event createInstance(Orders orders) {
         try {
-            return new ChampagneGiveawayEvent(price);
+            return new ChampagneGiveawayEvent(orders);
         } catch (IllegalArgumentException e) {
             return null;
         }

@@ -6,33 +6,22 @@ import christmas.domain.Event.Events;
 import christmas.domain.Event.EventsBuilder;
 import christmas.domain.Giveaway.Giveaways;
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
-import christmas.service.OrderService;
-import christmas.service.TodayService;
+import christmas.domain.Today.Today;
+import christmas.util.Looper;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ChristmasController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final OrderService orderService;
-    private final TodayService todayService;
 
 
-    public ChristmasController(
-            InputView inputView,
-            OutputView outputView,
-            OrderService orderService,
-            TodayService todayService
-    ) {
+    public ChristmasController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.orderService = orderService;
-        this.todayService = todayService;
     }
 
     public void play() {
@@ -49,25 +38,15 @@ public class ChristmasController {
     }
 
     private Today getToday() {
-        return tryCatchLoop(() -> todayService.createToday(inputView.getToday()));
+        return tryCatchLoop(() -> Today.of(inputView.getToday()));
     }
 
     private Orders getOrders() {
-        return tryCatchLoop(() -> orderService.createOrders(inputView.getOrders()));
+        return tryCatchLoop(() -> Orders.of(inputView.getOrders()));
     }
 
     private <T> T tryCatchLoop(Supplier<T> supplier) {
-        return tryCatchLoop(supplier, outputView::printIllegalArgumentException);
-    }
-
-    private <T> T tryCatchLoop(Supplier<T> supplier, Consumer<IllegalArgumentException> exceptionConsumer) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                exceptionConsumer.accept(e);
-            }
-        }
+        return Looper.tryCatchLoop(supplier, outputView::printIllegalArgumentException);
     }
 
     private Events getEvents(Today today, Orders orders) {

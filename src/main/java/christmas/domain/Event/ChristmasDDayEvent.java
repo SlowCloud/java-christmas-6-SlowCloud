@@ -1,25 +1,24 @@
 package christmas.domain.Event;
 
-import christmas.constant.Calender;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
-public class ChristmasDDayEvent implements DiscountEvent {
+class ChristmasDDayEvent implements DiscountEvent {
 
     private static final String EVENT_NAME = "크리스마스 디데이 할인";
     private static final int D_DAY_DISCOUNT_BASE = 1000;
     private static final int DISCOUNT_PER_DAY = 100;
     private final int today;
 
-    public ChristmasDDayEvent(Today today, Orders orders) {
+    private ChristmasDDayEvent(Today today, Orders orders) {
         Event.validatePrice(orders.getTotalPrice());
         validateToday(today);
         this.today = today.getToday();
     }
 
     private void validateToday(Today today) {
-        if (!today.is(Calender.BEFORE_CHRISTMAS)) {
+        if (!today.isBeforeChristmas()) {
             throw new IllegalArgumentException();
         }
     }

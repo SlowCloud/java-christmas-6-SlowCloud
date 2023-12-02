@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.domain.Today;
 
 import christmas.constant.ExceptionMessage;
 import org.assertj.core.api.Assertions;
@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TodayServiceTest {
 

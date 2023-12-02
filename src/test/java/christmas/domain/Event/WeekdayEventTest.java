@@ -1,7 +1,6 @@
 package christmas.domain.Event;
 
 import christmas.domain.Discount.Discount;
-import christmas.domain.Order.Order;
 import christmas.domain.Order.Orders;
 import christmas.fixture.OrderFixture;
 import christmas.fixture.OrdersFixture;
@@ -57,7 +56,7 @@ class WeekdayEventTest {
         @Test
         void checkGetDiscount() {
 
-            DiscountEvent discountEvent = new WeekdayEvent(
+            DiscountEvent discountEvent = (DiscountEvent) WeekdayEvent.createInstance(
                     TodayFixture.WEEKDAY.getToday(),
                     new Orders(List.of(OrderFixture.MAIN.getOrder()))
             );

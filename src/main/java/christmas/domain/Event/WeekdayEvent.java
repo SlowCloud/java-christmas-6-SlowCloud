@@ -1,18 +1,17 @@
 package christmas.domain.Event;
 
-import christmas.constant.Calender;
 import christmas.constant.Course;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
-public class WeekdayEvent implements DiscountEvent {
+class WeekdayEvent implements DiscountEvent {
 
     private static final String EVENT_NAME = "평일 할인";
 
     private final int mainDishCount;
 
-    public WeekdayEvent(Today today, Orders orders) {
+    private WeekdayEvent(Today today, Orders orders) {
         Event.validatePrice(orders.getTotalPrice());
         validateToday(today);
         validateMain(orders);
@@ -20,7 +19,7 @@ public class WeekdayEvent implements DiscountEvent {
     }
 
     private void validateToday(Today today) {
-        if (!today.is(Calender.WEEKDAY)) {
+        if (today.isWeekend()) {
             throw new IllegalArgumentException();
         }
     }

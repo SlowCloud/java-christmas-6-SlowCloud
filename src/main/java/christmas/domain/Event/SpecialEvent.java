@@ -1,21 +1,20 @@
 package christmas.domain.Event;
 
-import christmas.constant.Calender;
 import christmas.domain.Discount.Discount;
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
-public class SpecialEvent implements DiscountEvent {
+class SpecialEvent implements DiscountEvent {
 
     private static final String EVENT_NAME = "특별 할인";
 
-    public SpecialEvent(Today today, Orders orders) {
+    private SpecialEvent(Today today, Orders orders) {
         Event.validatePrice(orders.getTotalPrice());
         validateToday(today);
     }
 
     private void validateToday(Today today) {
-        if (!(today.is(Calender.CHRISTMAS) || today.is(Calender.SUNDAY))) {
+        if (!today.isSpecial()) {
             throw new IllegalArgumentException();
         }
     }

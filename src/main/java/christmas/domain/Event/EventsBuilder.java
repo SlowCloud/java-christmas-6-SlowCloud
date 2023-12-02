@@ -1,7 +1,7 @@
 package christmas.domain.Event;
 
 import christmas.domain.Order.Orders;
-import christmas.domain.Today;
+import christmas.domain.Today.Today;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class EventsBuilder {
         events.add(WeekdayEvent.createInstance(today, orders));
         events.add(WeekendEvent.createInstance(today, orders));
         events.add(SpecialEvent.createInstance(today, orders));
-        events.add(ChampagneGiveawayEvent.createInstance(orders.getTotalPrice()));
+        events.add(ChampagneGiveawayEvent.createInstance(orders));
         return events.stream()
                 .filter(Objects::nonNull)
                 .toList();

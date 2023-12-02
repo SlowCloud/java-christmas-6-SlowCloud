@@ -9,7 +9,8 @@ public enum OrdersFixture {
     APPETIZER(OrderFixture.APPETIZER),
     MAIN(OrderFixture.MAIN),
     DESSERT(OrderFixture.DESSERT),
-    DRINK(OrderFixture.DRINK);
+    DRINK(OrderFixture.DRINK),
+    EXPENSIVE(null);
 
     private final OrderFixture orderFixture;
 
